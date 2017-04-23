@@ -7,6 +7,8 @@ const colors = require('colors'),
     app = require('express')();
     mcache = require('memory-cache');
 
+app.set('port', (process.env.PORT || 5000));
+
 // --------------------------------
 // CONSTANTS
 // --------------------------------
@@ -51,10 +53,10 @@ var cache = (duration) => {
         } else {
             // The "key" is not present : process the request
             console.log('No valid entry found in cache - continue ...'.yellow);
+            
+            //override send method to add caching
             res.sendResponse = res.send
             res.send = (body) => {
-                console.log('sending ...');
-
                 mcache.put(key, body, CACHE_DURATION);
                 res.sendResponse(body)
             }
@@ -102,6 +104,7 @@ app.use((req, res) => {
 // INIT
 // --------------------------------
 
-app.listen(PORT, function () {
+
+app.listen(app.get('port'), function() {
     console.log('Example app listening on port '.green + PORT.toString().yellow)
 });
