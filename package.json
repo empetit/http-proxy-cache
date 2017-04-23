@@ -1,0 +1,17 @@
+{
+  "name": "funcky-proxy",
+  "version": "1.0.0",
+  "description": "Proxy server for api calls and caching",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "express": "^4.15.2",
+    "memory-cache": "^0.1.6",
+    "request": "^2.81.0"
+  }
+}
